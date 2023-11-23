@@ -1,0 +1,46 @@
+//mirar un ship en concreto
+// GET /trackings/:id
+aftership.tracking
+  .getTracking({
+    id: "1234567890",
+  })
+  .then((result) => console.log(result))
+  .catch((e) => console.log(e));
+
+
+// crear un ship (importante recuperar el id, guardalo)
+const payload = {
+    'tracking': {
+        'slug': 'dhl',
+        'tracking_number': '123456789' }
+};
+aftership.tracking
+  .createTracking(payload)
+  .then((result) => console.log(result))
+  .catch((e) => console.log(e));
+
+//Eliminar mediante un ID
+
+aftership.tracking
+  .deleteTracking({
+   id: "1234567890",
+  })
+  .then((result) => console.log(result))
+  .catch((e) => console.log(e));
+
+
+//Actualizar mediante ID
+const payload = {
+  tracking: {
+    title: "New Title",
+  },
+};
+aftership.tracking
+  .updateTracking({
+    slug: "ups",
+    tracking_number: "1234567890",
+  }, payload)
+  .then((result) => console.log(result))
+  .catch((e) => console.log(e));
+
+

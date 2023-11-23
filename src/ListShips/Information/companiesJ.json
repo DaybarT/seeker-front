@@ -1,0 +1,155 @@
+[
+    {
+      "slug": "ups",
+      "name": "UPS",
+      "destino": false,
+      "origen": false,
+      "codPostal": false,
+      "fEnvio": false
+    },
+    {
+      "slug": "spain-correos-es",
+      "name": "Correos de España",
+      "destino": false,
+      "origen": false,
+      "codPostal": false,
+      "fEnvio": false
+    },
+    {
+      "slug": "correosexpress",
+      "name": "Correos Express",
+      "destino": false,
+      "origen": false,
+      "codPostal": false,
+      "fEnvio": false
+    },
+    {
+      "slug": "dhl",
+      "name": "DHL Express",
+      "destino": true,
+      "origen": true,
+      "codPostal": false,
+      "fEnvio": false
+    },
+    {
+      "slug": "dhlparcel-es",
+      "name": "DHL Parcel Spain",
+      "destino": false,
+      "origen": false,
+      "codPostal": false,
+      "fEnvio": false
+    },
+    {
+      "slug": "dhl-es",
+      "name": "DHL Spain Domestic",
+      "destino": false,
+      "origen": false,
+      "codPostal": false,
+      "fEnvio": false
+    },
+    {
+      "slug": "international-seur",
+      "name": "International Seur",
+      "destino": false,
+      "origen": false,
+      "codPostal": false,
+      "fEnvio": true
+    },
+    {
+      "slug": "spanish-seur",
+      "name": "Spanish Seur",
+      "destino": false,
+      "origen": false,
+      "codPostal": true,
+      "fEnvio": false
+    },
+    {
+      "slug": "dpd",
+      "name": "DPD Global",
+      "destino": false,
+      "origen": false,
+      "codPostal": true,
+      "fEnvio": false
+    },
+    {
+      "slug": "tipsa",
+      "name": "TIPSA",
+      "destino": false,
+      "origen": false,
+      "codPostal": false,
+      "fEnvio": false
+    },
+    {
+      "slug": "paack-webhook",
+      "name": "Paack",
+      "destino": false,
+      "origen": false,
+      "codPostal": false,
+      "fEnvio": false
+    },
+    {
+      "slug": "mondialrelay-es",
+      "name": "Mondial Relay Spain(Punto Pack)",
+      "destino": false,
+      "origen": false,
+      "codPostal": true,
+      "fEnvio": false
+    },
+    {
+      "slug": "nacex-spain",
+      "name": "NACEX Spain",
+      "destino": false,
+      "origen": false,
+      "codPostal": true,
+      "fEnvio": false
+    },
+    {
+      "slug": "mrw-spain",
+      "name": "MRW",
+      "destino": false,
+      "origen": false,
+      "codPostal": false,
+      "fEnvio": false
+    },
+    {
+      "slug": "fedex",
+      "name": "FedEx®",
+      "destino": false,
+      "origen": false,
+      "codPostal": false,
+      "fEnvio": true
+    },
+    {
+      "slug": "gls",
+      "name": "GLS Global",
+      "destino": false,
+      "origen": false,
+      "codPostal": false,
+      "fEnvio": false
+    },
+    {
+      "slug": "gls-spain",
+      "name": "GLS Spain",
+      "destino": false,
+      "origen": false,
+      "codPostal": true,
+      "fEnvio": false
+    },
+    {
+      "slug": "redur-es",
+      "name": "Redur Spain",
+      "destino": false,
+      "origen": false,
+      "codPostal": false,
+      "fEnvio": false
+    },
+    {
+      "slug": "zeleris",
+      "name": "Zeleris",
+      "destino": false,
+      "origen": false,
+      "codPostal": false,
+      "fEnvio": false
+    }
+  ]
+  
