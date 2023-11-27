@@ -8,6 +8,7 @@ import {
   updateStockService
 } from "../Services/Stock.services";
 
+
 export const StockContext = createContext();
 
 export function StockProvider({ children }) {
@@ -17,7 +18,8 @@ export function StockProvider({ children }) {
   const ChargeStockByUser = async () => {
     const browserToken = await getToken();
     const chargeStock = await chargeByUsername(browserToken);
-    //console.log(chargeStock)
+
+    setStock(chargeStock)
     return chargeStock;
   };
 
@@ -32,7 +34,7 @@ export function StockProvider({ children }) {
     const stockAdded = await addStockService(SKU, talla, precio,browserToken,);
 
     if (stockAdded) {
-      console.log(true);
+      console.log(stockAdded);
       return true;
     }
   };
@@ -53,7 +55,8 @@ export function StockProvider({ children }) {
     ChargeStockByUser,
     chargeAllMarket,
     addStock,
-    updatePrices
+    updatePrices,
+    stock
   };
 
   return (

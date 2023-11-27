@@ -1,6 +1,6 @@
 import ProductList from "./Components/ProductList";
 import { useStock } from "../Context/StockContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../Context/SessionContext";
 import { Box } from "@mui/material";
@@ -8,6 +8,7 @@ import { Container } from "@mui/material";
 //te va a tocar pasar el toquen o el user.username para que el back entienda de alguna manera
 //que quieres ver tu stock, y necesita ese parametro...
 import { TextField } from "@mui/material";
+import NotLoggin from "../NotLoggin/NotLoggin";
 
 function Product() {
   const { handleLogin, isLoggedIn, user, handleLogout, authenticateUser } =
@@ -15,12 +16,6 @@ function Product() {
   const { chargeAllMarket } = useStock();
   const [zapas, setZapas] = useState(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/");
-    }
-  }, [isLoggedIn, navigate]);
 
   useEffect(() => {
     const fetchZapas = async () => {
@@ -60,7 +55,7 @@ function Product() {
           placeholder="Search model"
           onChange={handleChange}
           value={searchInput}
-          sx={{margin:1}}
+          sx={{ margin: 1 }}
         />
         {searchInput.length > 0 ? (
           <ProductList zapas={productosFiltrados} inputText={searchInput} />
@@ -87,6 +82,8 @@ function Product() {
         )}
       </>
     );
+  } else {
+    return <NotLoggin />;
   }
 }
 

@@ -71,9 +71,9 @@ const ProductCard = ({ SKU, Fecha, model, img, sizePrices }) => {
                 className="size-price-button"
                 sx={{ border: 1 }}
               >
-                {item.talla}
+                {item.talla} EU
                 <br />
-                {item.precio ? item.precio : "-"}
+                {item.precio ? item.precio+"€" : "-"}
               </Button>
             ))}
             <br />

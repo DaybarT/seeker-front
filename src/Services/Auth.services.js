@@ -145,13 +145,14 @@ export async function update(
   };
   try {
     const response = await fetch(url, options);
-
+    
     if (!response.ok) {
       throw new Error(`Error al registrar: ${response.statusText}`);
     }
 
     //console.log(response)
     const data = await response.json();
+   
     return data;
   } catch (error) {
     // Manejar el error de manera adecuada (puedes imprimirlo en la consola o realizar alguna otra acción)

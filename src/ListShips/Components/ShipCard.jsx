@@ -17,7 +17,18 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useShip } from "../../Context/ShipContext";
+import { Grid } from "@mui/material";
 
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 const ShipCard = ({
   name,
@@ -73,62 +84,75 @@ const ShipCard = ({
     }
   };
 
+  //AGREGA EL ITEM
   return (
     <>
-      <TableCell align="center">{name.toUpperCase()}</TableCell>
-      <TableCell align="center">{track}</TableCell>
-      <TableCell align="center">{slug.toUpperCase()}</TableCell>
-      <TableCell align="center">
-        {((origen && destino) || fEnvio || cPostal) && (
-          <Button onClick={handleOpen}>OTHER DATA</Button>
-        )}
-        <Box component="form" onSubmit={handleSubmit}>
-          <Button
-            type="submit"
-            size="small"
-            onClick={() => handleAction("deleteTrack")}
-            sx={{ padding: 1 }}
-          >
-            <DeleteIcon fontSize="small" />
-            {/* eliminar el envio de la bbdd y de la api */}
-          </Button>
-          {!isSended && !idAfterShip && (
-            <>
-              <Button
-                type="submit"
-                size="small"
-                sx={{ padding: 1 }}
-                onClick={() => handleAction("goTrack")}
-              >
-                <PlayArrowIcon fontSize="small" />
-              </Button>
-            </>
-          )}
-        </Box>
-      </TableCell>
-
-      <TableCell align="center">
-        {isSended && idAfterShip && (
-          <Box
-            component="form"
-            onClick={() => handleAction("getDetails")}
-            onSubmit={handleSubmit}
-          >
-            <Button type="submit" size="small" sx={{ padding: 1 }}>
-              <ManageSearchIcon fontSize="small" />
+      <Grid item xs>
+        <Item>NAME TRACK: {name.toUpperCase()}</Item>
+      </Grid>
+      <Grid item xs>
+        <Item>TRACKING NUMBER: {track}</Item>
+      </Grid>
+      <Grid item xs>
+        <Item>SHIPPING COMPANIES: {slug.toUpperCase()}</Item>
+      </Grid>
+      <Grid item xs>
+        <Item>
+          MORE ACTIONS:
+   
+          <Box component="form" onSubmit={handleSubmit}>
+  
+            <Button
+              type="submit"
+              size="small"
+              onClick={() => handleAction("deleteTrack")}
+             
+            >
+              <DeleteIcon fontSize="small" />
+              {/* eliminar el envio de la bbdd y de la api */}
             </Button>
+  
+            {!isSended && !idAfterShip && (
+              <>
+                <Button
+                  type="submit"
+                  size="small"
+                 
+                  onClick={() => handleAction("goTrack")}
+                >
+                  <PlayArrowIcon fontSize="small" />
+                </Button>
+              </>
+            )}
           </Box>
-        )}
-      </TableCell>
+        </Item>
+      </Grid>
+      {isSended && idAfterShip && (
+        <Grid item xs>
+          <Item>
+            STATE:
+            <Box
+              component="form"
+              onClick={() => handleAction("getDetails")}
+              onSubmit={handleSubmit}
+            >
+              <Button type="submit" size="small" sx={{ padding: 1 }}>
+                <ManageSearchIcon fontSize="small" />
+              </Button>
+            </Box>
+          </Item>
+        </Grid>
+      )}
+
       <Modal open={open} onClose={handleClose}>
         <Box sx={style} display={"flex"}>
           <Typography sx={{ paddingTop: 2 }} color="text.secondary">
-
             {dataShip &&
               dataShip.map((item, index) => (
                 <div key={index}>
-                  <p><b>{item.location}</b> : <u>{item.message}</u></p>
-                  
+                  <p>
+                    <b>{item.location}</b> : <u>{item.message}</u>
+                  </p>
                 </div>
               ))}
           </Typography>

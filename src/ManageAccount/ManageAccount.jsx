@@ -70,9 +70,6 @@ export default function ManageAccount() {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ width: 100, height: 100 }}>
-              <img src={urlImage} style={{ width: 140 }} />
-            </Avatar>
             <Typography component="h1" variant="h5">
               {user.username}
             </Typography>
@@ -83,15 +80,7 @@ export default function ManageAccount() {
               noValidate
               sx={{ mt: 1 }}
             >
-              <Button fullWidth variant="contained" component="label">
-                Upload Avatar
-                <input
-                  type="file"
-                  id="file"
-                  hidden
-                  style={{ paddingRight: 0 }}
-                />
-              </Button>
+             
               <TextField
                 margin="normal"
                 required

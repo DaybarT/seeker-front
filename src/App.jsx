@@ -16,6 +16,7 @@ import ForgotPassword from "./ForgotPassword/ForgotPassword.jsx";
 import ChangePass from "./ForgotPassword/ChangePass.jsx";
 import Ship from "./ListShips/Ship.jsx";
 import { ShipProvider } from "./Context/ShipContext.jsx";
+import Footer from "./Footer/Footer.jsx";
 
 const defaultTheme = createTheme({
   palette: {
@@ -47,6 +48,7 @@ function App() {
 
                   <Route path="/*" element={<NotFound />} />
                 </Routes>
+                <Footer/>
               </ShipProvider>
             </StockProvider>
           </AuthProvider>

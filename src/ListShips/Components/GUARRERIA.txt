@@ -1,0 +1,58 @@
+<TableCell align="center">{name.toUpperCase()}</TableCell>
+      <TableCell align="center">{track}</TableCell>
+      <TableCell align="center">{slug.toUpperCase()}</TableCell>
+      <TableCell align="center">
+        <Box component="form" onSubmit={handleSubmit}>
+          <Button
+            type="submit"
+            size="small"
+            onClick={() => handleAction("deleteTrack")}
+            sx={{ padding: 1 }}
+          >
+            <DeleteIcon fontSize="small" />
+            {/* eliminar el envio de la bbdd y de la api */}
+          </Button>
+          {!isSended && !idAfterShip && (
+            <>
+              <Button
+                type="submit"
+                size="small"
+                sx={{ padding: 1 }}
+                onClick={() => handleAction("goTrack")}
+              >
+                <PlayArrowIcon fontSize="small" />
+              </Button>
+            </>
+          )}
+        </Box>
+      </TableCell>
+
+      <TableCell align="center">
+        {isSended && idAfterShip && (
+          <Box
+            component="form"
+            onClick={() => handleAction("getDetails")}
+            onSubmit={handleSubmit}
+          >
+            <Button type="submit" size="small" sx={{ padding: 1 }}>
+              <ManageSearchIcon fontSize="small" />
+            </Button>
+          </Box>
+        )}
+      </TableCell>
+      <Modal open={open} onClose={handleClose}>
+        <Box sx={style} display={"flex"}>
+          <Typography sx={{ paddingTop: 2 }} color="text.secondary">
+
+            {dataShip &&
+              dataShip.map((item, index) => (
+                <div key={index}>
+                  <p><b>{item.location}</b> : <u>{item.message}</u></p>
+                  
+                </div>
+              ))}
+          </Typography>
+        </Box>
+      </Modal>
+    </>
+  );

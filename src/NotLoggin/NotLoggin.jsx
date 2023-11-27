@@ -5,16 +5,12 @@ import { Container, CssBaseline } from "@mui/material";
 import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-
-export default function NotFound() {
-  const { isLoggedIn } = useAuth();
-
+const NotLoggin = () => {
   const navigate = useNavigate();
 
   const returnClick = () => {
     navigate("/");
   };
-
   return (
     <Container
       component="main"
@@ -27,13 +23,8 @@ export default function NotFound() {
         height: "100vh", // Establecer la altura al 100% de la ventana
       }}
     >
-      <Box mb={2}>
-        <DangerousIcon style={{ fontSize: 80 }} />
-      </Box>{" "}
-      {/* Agregar espacio en la parte inferior */}
-      <Box style={{ fontSize: 50 }}>404 NOT FOUND</Box>{" "}
-      {/* Agregar espacio en la parte inferior */}
       <Button onClick={returnClick}>INICIO</Button>
     </Container>
   );
-}
+};
+export default NotLoggin;

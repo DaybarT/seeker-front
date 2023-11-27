@@ -20,7 +20,7 @@ const StockCard = ({
   sizePrices,
   Fecha,
 }) => {
-  const { deleteStock, updatePrices } = useStock();
+  const { deleteStock, updatePrices, ChargeStockByUser } = useStock();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -45,7 +45,8 @@ const StockCard = ({
       const SKU = refreshStockValue;
       try {
         await updatePrices(SKU);
-        window.location.reload();
+        ChargeStockByUser()
+        //window.location.reload();
       } catch (error) {
         console.error("Error al refrescar precios:", error);
       }
@@ -54,7 +55,8 @@ const StockCard = ({
       const _id = deleteStockValue;
       try {
         await deleteStock(_id); // Lógica para eliminar el stock
-        window.location.reload();
+        ChargeStockByUser()
+        //window.location.reload();
       } catch (error) {
         console.error("Error al eliminar el stock:", error);
       }
@@ -135,9 +137,9 @@ const StockCard = ({
                 className="size-price-button"
                 sx={{ border: 1 }}
               >
-                {item.talla}
+                {item.talla} EU
                 <br />
-                {item.precio ? item.precio : "-"}
+                {item.precio ? item.precio+"€" : "-"} 
               </Button>
             ))}
             <br />

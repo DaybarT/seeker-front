@@ -39,6 +39,8 @@ export function AuthProvider({ children }) {
       localStorage.removeItem("authToken");
       console.log("CHAO");
       setIsLoggedIn(false);
+      setUser(null)
+      window.location.reload();
     } catch (error) {
       // Manejar el error de cierre de sesión
       console.error("Error en el cierre de sesión:", error);
@@ -70,12 +72,8 @@ export function AuthProvider({ children }) {
       const goUpdate = await update(email, password, fullname, browserToken);
       //el update foto olvidate de hacerlo 1 por 1, en back haz toda la logica y ya esta.
       if (goUpdate) {
-        //actualizar actualiza, pero tengo que actualizar la data del user, si quiero hacer eso tengo que
-        // actualizar el token y volver a decodificarlo y volver a setearlo
-        //seria tan sencillo como en el endpoint firmarlo otra vez y decodificarlo pero es una movida.
-        //valorar no tener avatar porque cambiar el codigo para que no de error... me da igual.
-
-        return true;
+        storeToken(goUpdate.newtoken)
+        return goUpdate;
       }
     } catch (error) {
       console.error("Error en registro:", error);

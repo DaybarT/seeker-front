@@ -3,11 +3,10 @@ import StockCard from "./StockCard";
 
 //SKU,precio,talla,model,img,sizeprice
 
-const StockList = ({zapas}) => {
-    console.log(zapas)
+const StockList = ({stock}) => {
     return(
         <div className="StockList"  style={{ display: 'flex', width: '100%',flexWrap: 'wrap', justifyContent: "center" }}>
-            {zapas.map((zapa,index)=> {
+            {stock.map((zapa,index)=> {
                 return <StockCard 
                 key={index}
                 _id={zapa._id}

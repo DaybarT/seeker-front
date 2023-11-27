@@ -3,7 +3,9 @@ import { useStock } from "../../Context/StockContext";
 import AddIcon from "@mui/icons-material/Add";
 
 
-const AddStockForm = ({ addStock }) => {
+
+const AddStockForm = ({ addStock,ChargeStockByUser }) => {
+
   const handleAddStock = async (event) => {
     event.preventDefault();
     const SKU = document.getElementById("SKU").value;
@@ -12,7 +14,9 @@ const AddStockForm = ({ addStock }) => {
     try {
       
       await addStock(SKU, talla, precio); // Lógica para agregar el stock
-      window.location.reload(); // Recarga la página después de agregar el stock
+      ChargeStockByUser()
+      //window.location.reload();
+
     } catch (error) {
       console.error("Error al agregar stock:", error);
     }
