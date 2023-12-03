@@ -1,13 +1,14 @@
 import * as React from "react";
 
 import Button from "@mui/material/Button";
-import style from "../Styles/ModalStyle";
+
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { Modal } from "@mui/material";
+
+import Error from "../Error/Error";
 
 import { useEffect } from "react";
 
@@ -17,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 export default function ForgotPassword() {
   const { isLoggedIn, user, forgotPassword } = useAuth();
   const navigate = useNavigate();
+  const [errorState, setErrorState] = useState();
 
   const handleForgotPassword = async (event) => {
     event.preventDefault();
@@ -30,28 +32,9 @@ export default function ForgotPassword() {
       }
     } catch (error) {
       //tal vez poner un modal con el mensaje de error
-      console.error("Error durante el inicio de sesión:", error.message);
+      setErrorState(error.message);
     }
   };
-
-
-//   const updatePassword = async (event) => {
-//     event.preventDefault();
-
-//     const email = document.getElementById("email").value;
-//     const password = document.getElementById("password").value;
-//     try {
-//         const newPass = await handleUpdate(email,password);
-//         console.log(newPass)
-//         if (newPass){
-//             navigate("/");
-//         }
-      
-//     } catch (error) {
-        
-//     }
-//   }
-
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -85,6 +68,7 @@ export default function ForgotPassword() {
           <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
             Check Email
           </Button>
+          {errorState && <Error>{errorState}</Error>}
           <Grid>
             <Grid>
               <Link to="/">Log In</Link>

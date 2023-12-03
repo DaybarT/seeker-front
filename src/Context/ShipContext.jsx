@@ -29,8 +29,8 @@ export function ShipProvider({ children }) {
       shipCpostal,
       shipFenvio
     );
-    console.log(addShip)
-    //return addShip;
+    
+    return addShip;
   };
 
   const ChargeShipsByUser = async () => {

@@ -18,7 +18,7 @@ import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useShip } from "../../Context/ShipContext";
 import { Grid } from "@mui/material";
-
+import { useAuth } from "../../Context/SessionContext";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 
@@ -41,8 +41,10 @@ const ShipCard = ({
   _id,
   isSended,
   idAfterShip,
+  username
 }) => {
-  const { DeleteShipByUser, fetchAPI, getShip } = useShip();
+  const { user } = useAuth();
+  const { DeleteShipByUser, fetchAPI, getShip,ChargeShipsByUser } = useShip();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -63,14 +65,14 @@ const ShipCard = ({
     if (actionType === "goTrack") {
       console.log("TRACKEO " + _id);
       const data = await fetchAPI(_id);
-      window.location.reload();
+      ChargeShipsByUser()
       // Lógica para manejar la acción de goTrack
     }
 
     if (actionType === "deleteTrack") {
       //console.log("ELIMINO "+_id)
       const data = await DeleteShipByUser(_id);
-      window.location.reload();
+      ChargeShipsByUser()
     }
 
     if (actionType === "getDetails") {
@@ -84,11 +86,15 @@ const ShipCard = ({
     }
   };
 
-  //AGREGA EL ITEM
+
   return (
     <>
       <Grid item xs>
-        <Item>NAME TRACK: {name.toUpperCase()}</Item>
+        <Item>NAME TRACK: {name.toUpperCase()}
+        {user.role === "owner" && (
+           <Typography variant="body2" color="text.secondary">User: {username}</Typography>
+        )}
+        </Item>
       </Grid>
       <Grid item xs>
         <Item>TRACKING NUMBER: {track}</Item>

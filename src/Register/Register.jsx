@@ -31,12 +31,12 @@ export default function Register() {
 
     try {
       const user = await handleRegister(email, password, fullname, username);
-      console.log(user);
+     
       if (user) {
         handleOpen();
       }
     } catch (error) {
-      console.error("Error durante el inicio de sesión:", error.message);
+      console.error(error.message);
     }
   };
 

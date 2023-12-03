@@ -21,6 +21,7 @@ function Product() {
     const fetchZapas = async () => {
       try {
         const data = await chargeAllMarket();
+        console.log(data);
 
         setZapas(data);
       } catch (error) {
@@ -42,8 +43,15 @@ function Product() {
 
   if (searchInput.length > 0 && zapas && zapas.products) {
     productosFiltrados = zapas.products.filter((producto) => {
-      // Filtrar por el campo 'model'
-      return producto.model.toLowerCase().includes(searchInput.toLowerCase());
+      // Filtrar por los campos 'model' o 'SKU'
+      const isInModel = producto.model
+        .toLowerCase()
+        .includes(searchInput.toLowerCase());
+      const isInSKU = producto.SKU.toLowerCase().includes(
+        searchInput.toLowerCase()
+      );
+
+      return isInModel || isInSKU;
     });
   }
 
@@ -55,7 +63,7 @@ function Product() {
           placeholder="Search model"
           onChange={handleChange}
           value={searchInput}
-          sx={{ margin: 1 }}
+          sx={{ marginLeft: 16 }}
         />
         {searchInput.length > 0 ? (
           <ProductList zapas={productosFiltrados} inputText={searchInput} />

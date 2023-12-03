@@ -57,7 +57,7 @@ function Ship() {
               alignItems: "center",
             }}
           >
-            <AddShipForm AddShipsByUser={AddShipsByUser} />
+            <AddShipForm AddShipsByUser={AddShipsByUser} ChargeShipsByUser={ChargeShipsByUser} />
 
             <br />
 

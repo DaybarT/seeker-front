@@ -18,6 +18,7 @@ const ProductList = ({ zapas }) => {
             model={zapa.model}
             img={zapa.img}
             sizePrices={zapa.sizePrices}
+            stockAvailable={zapa.stockAvailable}
           />
         );
       })}

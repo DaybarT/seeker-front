@@ -1,10 +1,14 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useStock } from "../../Context/StockContext";
 import AddIcon from "@mui/icons-material/Add";
+import { useState } from "react";
+import Error from "../../Error/Error";
 
 
 
 const AddStockForm = ({ addStock,ChargeStockByUser }) => {
+
+  const [errorState, setErrorState] = useState();
 
   const handleAddStock = async (event) => {
     event.preventDefault();
@@ -15,10 +19,13 @@ const AddStockForm = ({ addStock,ChargeStockByUser }) => {
       
       await addStock(SKU, talla, precio); // Lógica para agregar el stock
       ChargeStockByUser()
+      setErrorState()
       //window.location.reload();
 
     } catch (error) {
-      console.error("Error al agregar stock:", error);
+      
+      setErrorState(error.message);
+
     }
   };
 
@@ -54,6 +61,7 @@ const AddStockForm = ({ addStock,ChargeStockByUser }) => {
       <Button sx={{ border: 1, margin: 1 }}>
         <AddIcon onClick={handleAddStock} style={{ fontSize: 40 }} />
       </Button>
+      {errorState && <Error>{errorState}</Error>}
     </Box>
   );
 };

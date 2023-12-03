@@ -27,6 +27,7 @@ const ShipList = ({ ships }) => {
               _id={ship._id}
               isSended={ship.isSended}
               idAfterShip={ship.idAfterShip}
+              username={ship.username}
             />
           </Grid>
         </Box>

@@ -16,7 +16,6 @@ function Stock() {
   useEffect(() => {
     const fetchZapas = async () => {
       try {
-
         if (!stock) {
           const data = await ChargeStockByUser();
         }
@@ -31,12 +30,15 @@ function Stock() {
   }, [stock]);
 
   if (isLoggedIn && user) {
-    
+    console.log(stock);
     return (
       <>
-        <AddStockForm addStock={addStock} ChargeStockByUser={ChargeStockByUser} />
+        <AddStockForm
+          addStock={addStock}
+          ChargeStockByUser={ChargeStockByUser}
+        />
         {stock ? (
-          <StockList stock={stock.stock}/>
+          <StockList stock={stock.stock} />
         ) : (
           <Container
             component="main"

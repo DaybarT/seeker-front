@@ -7,9 +7,11 @@ import { MenuItem } from "@mui/material";
 import { useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import { FormControl } from "@mui/material";
-import { ShipContext } from "../../Context/ShipContext";
+import { useShip } from "../../Context/ShipContext";
+import Error from "../../Error/Error";
 
-const AddShipForm = ({ AddShipsByUser }) => {
+const AddShipForm = ({ AddShipsByUser,ChargeShipsByUser }) => {
+  const [errorState, setErrorState] = useState();
   const [slug, setSlug] = useState("");
   const name = "";
   const track = "";
@@ -52,9 +54,11 @@ const AddShipForm = ({ AddShipsByUser }) => {
         shipCpostal,
         shipFenvio
       );
-      window.location.reload();
+      ChargeShipsByUser()
+      setErrorState()
+     
     } catch (error) {
-      console.error("Error al agregar el envio:", error);
+      setErrorState(`Error al agregar el envio: ${error.message}`);
     }
   };
 
@@ -147,6 +151,7 @@ const AddShipForm = ({ AddShipsByUser }) => {
       <Button sx={{ border: 1, margin: 1 }}>
         <AddIcon onClick={handleShip} style={{ fontSize: 40 }} />
       </Button>
+      {errorState && <Error>{errorState}</Error>}
     </Box>
   );
 };

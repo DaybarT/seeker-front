@@ -17,6 +17,7 @@ const StockList = ({stock}) => {
                 img={zapa.img}
                 Fecha={zapa.Fecha}
                 sizePrices={zapa.sizePrices}
+                username={zapa.username}
                 />
             })}
         </div>

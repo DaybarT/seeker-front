@@ -16,7 +16,8 @@ export async function chargeByUsername(
     const response = await fetch(url, options);
 
     if (!response.ok) {
-      throw new Error(`Error cargando tu stock: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.error);
     }
 
     // Parsea la respuesta como JSON
@@ -27,7 +28,7 @@ export async function chargeByUsername(
 
     return data;
   } catch (error) {
-    console.error("Error en la solicitud de cargar tu stock:", error.message);
+    console.error(error.message);
     throw error; // Puedes manejar el error o relanzarlo según tus necesidades
   }
 }
@@ -48,7 +49,8 @@ export async function chargeAllProducts(
     const response = await fetch(url, options);
 
     if (!response.ok) {
-      throw new Error(`Error cargando tu stock: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.error);
     }
 
     // Parsea la respuesta como JSON
@@ -59,7 +61,7 @@ export async function chargeAllProducts(
 
     return data;
   } catch (error) {
-    console.error("Error en la solicitud de cargar tu stock:", error.message);
+    console.error(error.message);
     throw error; // Puedes manejar el error o relanzarlo según tus necesidades
   }
 }
@@ -87,7 +89,8 @@ export async function addStockService(
     const response = await fetch(url, options);
 
     if (!response.ok) {
-      throw new Error(`Error cargando tu stock: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.error);
     }
 
     // Parsea la respuesta como JSON
@@ -98,7 +101,7 @@ export async function addStockService(
 
     return data;
   } catch (error) {
-    console.error("Error en la solicitud de cargar tu stock:", error.message);
+    console.error(error.message);
     throw error; // Puedes manejar el error o relanzarlo según tus necesidades
   }
 }
@@ -118,7 +121,8 @@ export async function deleteStockService(
     const response = await fetch(url + _id, options);
 
     if (!response.ok) {
-      throw new Error(`Error cargando tu stock: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.error);
     }
 
     // Parsea la respuesta como JSON
@@ -129,7 +133,7 @@ export async function deleteStockService(
 
     return data;
   } catch (error) {
-    console.error("Error al eliminar stock:", error.message);
+    console.error(error.message);
     throw error; // Puedes manejar el error o relanzarlo según tus necesidades
   }
 }
@@ -149,7 +153,8 @@ export async function updateStockService(
     const response = await fetch(url + SKU, options);
 
     if (!response.ok) {
-      throw new Error(`Error cargando tu stock: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.error);
     }
 
     // Parsea la respuesta como JSON
@@ -160,7 +165,7 @@ export async function updateStockService(
 
     return data;
   } catch (error) {
-    console.error("Error al eliminar stock:", error.message);
+    console.error(error.message);
     throw error; // Puedes manejar el error o relanzarlo según tus necesidades
   }
 }

@@ -99,7 +99,7 @@ export default function Home() {
                     justifyContent: "center",
                   }}
                 >
-                  <InventoryIcon style={{ fontSize: 50 }} />
+                  <InventoryIcon style={{ fontSize: 50 }} /> <p style={{ fontSize: 20 }}> - INVENTORY</p>
                 </Card>
                 <br />
                 THIS SECTION IS FOR LISTING THE STOCK YOU HAVE AT HOME. WHEN THE
@@ -108,6 +108,7 @@ export default function Home() {
                 ACQUIRED. IN THIS SECTION, YOU'LL BE ABLE TO OBSERVE THE CURRENT
                 PRICES, AND IF BY ANY CHANCE THEY ARE NOT UP TO DATE, YOU CAN
                 UPDATE THEM YOURSELF.
+                TRY TO HAVE EVERYTHING REGISTERED BECAUSE LOCAL STORES COULD MAKE YOU AN OFFER.
               </Item>
             </Grid>
 
@@ -121,13 +122,14 @@ export default function Home() {
                     justifyContent: "center",
                   }}
                 >
-                  <PriceCheckIcon style={{ fontSize: 50 }} />
+                  <PriceCheckIcon style={{ fontSize: 50 }} /> <p style={{ fontSize: 20 }}> - MARKET</p>
                 </Card>
                 <br />
                 HERE, YOU'LL BE ABLE TO SEE ALL THE PRODUCTS AVAILABLE IN THE
                 MARKET, THEIR SELLING PRICES, AND WHO KNOWS, YOU MIGHT JUST FALL
                 IN LOVE WITH A PAIR OF SHOES. INCLUDE A SEARCH BAR FOR QUICKER
                 SEARCHES.
+                IN THIS SECTION, STORES CAN SEE THE STOCK OF MEMBERS OF THE APPLICATION FOR AN URGENT PURCHASE.
               </Item>
             </Grid>
             <Grid item xs={8}>
@@ -140,7 +142,7 @@ export default function Home() {
                     justifyContent: "center",
                   }}
                 >
-                  <LocalShippingIcon style={{ fontSize: 50 }} />
+                  <LocalShippingIcon style={{ fontSize: 50 }} /> <p style={{ fontSize: 20 }}> - SHIPS</p>
                 </Card>
                 <br />
                 THANKS TO AFTERSHIP IN THIS SECTION, YOU'LL SEE THE CURRENT
@@ -165,7 +167,7 @@ export default function Home() {
                     justifyContent: "center",
                   }}
                 >
-                  <WarningIcon style={{ fontSize: 50 }} />
+                  <WarningIcon style={{ fontSize: 50 }} /> <p style={{ fontSize: 20 }}> - LEGAL NOTICE</p>
                 </Card>
                 <br />
                 <b>

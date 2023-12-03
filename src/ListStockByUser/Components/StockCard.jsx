@@ -7,7 +7,7 @@ import Modal from "@mui/material/Modal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useStock } from "../../Context/StockContext";
 import { useShip } from "../../Context/ShipContext";
-// const StockCard = ({ SKU,precio,talla,model,img,sizeprice }) => {
+import { useAuth } from "../../Context/SessionContext";
 
 const StockCard = ({
   _id,
@@ -19,7 +19,9 @@ const StockCard = ({
   img,
   sizePrices,
   Fecha,
+  username
 }) => {
+  const { user } = useAuth();
   const { deleteStock, updatePrices, ChargeStockByUser } = useStock();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -101,14 +103,14 @@ const StockCard = ({
 
           {/* {model} */}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body" color="text.secondary">
           SKU: {SKU}
         </Typography>
 
-        <Typography variant="body2" color="text.primary">
+        <Typography variant="body" color="text.primary">
           {talla} EU | {precio} €
         </Typography>
-        <Button onClick={handleOpen}>VIEW PRICES</Button>
+        <Button variant="contained" color="secondary" onClick={handleOpen}>VIEW PRICES</Button>
         <div>
           <Box component="form" onSubmit={handleSubmit}>
             <Button
@@ -129,6 +131,12 @@ const StockCard = ({
             </Button>
           </Box>
         </div>
+       
+        {user.role === "owner" && (
+          <Typography variant="body2" color="text.secondary">User: {username}</Typography>
+             )}
+
+
         <Modal open={open} onClose={handleClose}>
           <Box sx={style}>
             {sizePrices.map((item) => (

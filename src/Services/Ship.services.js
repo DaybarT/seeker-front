@@ -31,7 +31,9 @@ export async function addShips(
     const response = await fetch(url, options);
 
     if (!response.ok) {
-      throw new Error(`Error añadiendo tu envio: ${response.statusText}`);
+      const data = await response.json();
+     
+      throw new Error(data.error);
     }
 
     // Parsea la respuesta como JSON
@@ -39,7 +41,7 @@ export async function addShips(
 
     return data;
   } catch (error) {
-    console.error("Error general:", error);
+    console.error(error.message);
     throw error; // Puedes manejar el error o relanzarlo según tus necesidades
   }
 }
@@ -60,7 +62,8 @@ export async function chargeShips(
     const response = await fetch(url, options);
 
     if (!response.ok) {
-      throw new Error(`Error cargando tus envios: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.error);
     }
 
     // Parsea la respuesta como JSON
@@ -68,7 +71,7 @@ export async function chargeShips(
 
     return data;
   } catch (error) {
-    console.error("Error general:", error);
+    console.error(error.message);
     throw error; // Puedes manejar el error o relanzarlo según tus necesidades
   }
 }
@@ -89,7 +92,8 @@ export async function deleteShips(
     const response = await fetch(url+_id, options);
 
     if (!response.ok) {
-      throw new Error(`Error eliminando tu envio: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.error);
     }
 
     // Parsea la respuesta como JSON
@@ -97,7 +101,7 @@ export async function deleteShips(
 
     return data;
   } catch (error) {
-    console.error("Error general:", error);
+    console.error(error.message);
     throw error; // Puedes manejar el error o relanzarlo según tus necesidades
   }
 }
@@ -118,7 +122,8 @@ export async function fetchId(
     const response = await fetch(url+_id, options);
 
     if (!response.ok) {
-      throw new Error(`Error eliminando tu envio: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.error);
     }
 
     // Parsea la respuesta como JSON
@@ -126,7 +131,7 @@ export async function fetchId(
 
     return data;
   } catch (error) {
-    console.error("Error general:", error);
+    console.error(error.message);
     throw error; // Puedes manejar el error o relanzarlo según tus necesidades
   }
 }
@@ -147,7 +152,8 @@ export async function getData(
     const response = await fetch(url+_id, options);
 
     if (!response.ok) {
-      throw new Error(`Error consultando tu envio: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.error);
     }
 
     // Parsea la respuesta como JSON
@@ -155,7 +161,7 @@ export async function getData(
 
     return data;
   } catch (error) {
-    console.error("Error general:", error);
+    console.error(error.message);
     throw error; // Puedes manejar el error o relanzarlo según tus necesidades
   }
 }

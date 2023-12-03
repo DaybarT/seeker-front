@@ -22,7 +22,8 @@ export async function login(
     const response = await fetch(url, options);
 
     if (!response.ok) {
-      throw new Error(`Error login: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.error);
     }
 
     // Parsea la respuesta como JSON
@@ -36,7 +37,7 @@ export async function login(
 
     return token;
   } catch (error) {
-    console.error("Error en la solicitud de inicio de sesión:", error.message);
+   
     throw error; // Puedes manejar el error o relanzarlo según tus necesidades
   }
 }
@@ -52,16 +53,17 @@ export async function logout(browserToken, url = apiUrl + "/auth/disconnect") {
   try {
     const response = await fetch(url, options);
     if (!response.ok) {
-      throw new Error(`Error logout: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.error);
     }
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error en la función verify:", error);
+    console.error(error.message);
     throw error; // Puedes optar por volver a lanzar el error si es necesario
   }
 
-  return response.json("OK");
+  
 } //funcion para el logout
 
 export async function verify(browserToken, url = apiUrl + "/auth/verify") {
@@ -76,7 +78,8 @@ export async function verify(browserToken, url = apiUrl + "/auth/verify") {
     const response = await fetch(url, options);
 
     if (!response.ok) {
-      throw new Error(`Error al registrar: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.error);
     }
 
     //console.log(response)
@@ -84,7 +87,7 @@ export async function verify(browserToken, url = apiUrl + "/auth/verify") {
     return data;
   } catch (error) {
     // Manejar el error de manera adecuada (puedes imprimirlo en la consola o realizar alguna otra acción)
-    console.error("Error en la función verify:", error);
+    console.error("Error en la función verify:", error.message);
     throw error; // Puedes optar por volver a lanzar el error si es necesario
   }
 }
@@ -111,7 +114,9 @@ export async function register(
     const response = await fetch(url, options);
 
     if (!response.ok) {
-      throw new Error(`Error al registrar: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.messages);
+      
     }
 
     //console.log(response)
@@ -119,7 +124,6 @@ export async function register(
     return data;
   } catch (error) {
     // Manejar el error de manera adecuada (puedes imprimirlo en la consola o realizar alguna otra acción)
-    console.error("Error al registrar:", error);
     throw error; // Puedes optar por volver a lanzar el error si es necesario
   }
 }
@@ -145,18 +149,19 @@ export async function update(
   };
   try {
     const response = await fetch(url, options);
-    
+
     if (!response.ok) {
-      throw new Error(`Error al registrar: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.error);
     }
 
     //console.log(response)
     const data = await response.json();
-   
+
     return data;
   } catch (error) {
     // Manejar el error de manera adecuada (puedes imprimirlo en la consola o realizar alguna otra acción)
-    console.error("Error al registrar:", error);
+    console.error("Error al actualizar:", error.message);
     throw error; // Puedes optar por volver a lanzar el error si es necesario
   }
 }
@@ -179,20 +184,19 @@ export async function forgotpassword(
     const response = await fetch(url, options);
 
     if (!response.ok) {
-      throw new Error(`No se encontró: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.error);
     }
 
     // Parsea la respuesta como JSON
     const data = await response.json();
 
-    if (data) {
-      return true;
-    }
+    return data;
 
     // Puedes hacer algo con el token, por ejemplo, almacenarlo en el estado o en una cookie
     //console.log("Token recibido:", token);
   } catch (error) {
-    console.error("Error en la solicitud de inicio de sesión:", error.message);
+    console.error(error.message);
     throw error; // Puedes manejar el error o relanzarlo según tus necesidades
   }
 }
@@ -216,7 +220,8 @@ export async function updatepassword(
     const response = await fetch(url, options);
 
     if (!response.ok) {
-      throw new Error(`Error cambiando la contraseña: ${response.statusText}`);
+      const data = await response.json();
+      throw new Error(data.error);
     }
 
     // Parsea la respuesta como JSON
@@ -229,7 +234,6 @@ export async function updatepassword(
     // Puedes hacer algo con el token, por ejemplo, almacenarlo en el estado o en una cookie
     //console.log("Token recibido:", token);
   } catch (error) {
-    console.error("Error en la solicitud de inicio de sesión:", error.message);
     throw error; // Puedes manejar el error o relanzarlo según tus necesidades
   }
 }

@@ -14,14 +14,27 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import style from "../../Styles/ModalStyle";
+import aux from "../../Styles/ModalAux";
 import Modal from "@mui/material/Modal";
+import { useAuth } from "../../Context/SessionContext";
 
 // const StockCard = ({ SKU,precio,talla,model,img,sizeprice }) => {
 
-const ProductCard = ({ SKU, Fecha, model, img, sizePrices }) => {
+const ProductCard = ({
+  SKU,
+  Fecha,
+  model,
+  img,
+  sizePrices,
+  stockAvailable,
+}) => {
+  const { user } = useAuth();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [open2, setOpen2] = useState(false);
+  const handleOpen2 = () => setOpen2(true);
+  const handleClose2 = () => setOpen2(false);
 
   return (
     <Card
@@ -29,7 +42,7 @@ const ProductCard = ({ SKU, Fecha, model, img, sizePrices }) => {
         textAlign: "center",
         display: "flex",
         alignItems: "center",
-        margin: "10px"
+        margin: "10px",
       }}
     >
       <Box
@@ -62,7 +75,10 @@ const ProductCard = ({ SKU, Fecha, model, img, sizePrices }) => {
         <Typography variant="body2" color="text.secondary">
           SKU:{SKU}
         </Typography>
-        <Button onClick={handleOpen}>VIEW PRICES</Button>
+        <Button variant="outlined" color="secondary" onClick={handleOpen}>
+          VIEW PRICES
+        </Button>
+
         <Modal open={open} onClose={handleClose}>
           <Box sx={style}>
             {sizePrices.map((item) => (
@@ -73,7 +89,7 @@ const ProductCard = ({ SKU, Fecha, model, img, sizePrices }) => {
               >
                 {item.talla} EU
                 <br />
-                {item.precio ? item.precio+"€" : "-"}
+                {item.precio ? item.precio + "€" : "-"}
               </Button>
             ))}
             <br />
@@ -82,6 +98,28 @@ const ProductCard = ({ SKU, Fecha, model, img, sizePrices }) => {
             </Typography>
           </Box>
         </Modal>
+
+        {stockAvailable && stockAvailable.length > 0 &&
+          (user.role === "shop" || user.role === "owner") && (
+            <div>
+              <Button variant="contained" color="success" onClick={handleOpen2}>
+                Buy Now
+              </Button>
+              <Modal open={open2} onClose={handleClose2}>
+                <Box sx={style}>
+                  <b><u>USER WITH AVAILABLE STOCK</u></b>
+                  {stockAvailable.map((item, index) => (
+                    <div key={index}>
+                      <p>
+                        Username: <b>{item.username}</b> - {item.talla} EU
+                      </p>
+                    </div>
+                  ))}
+                  <br />
+                </Box>
+              </Modal>
+            </div>
+          )}
       </Box>
     </Card>
   );

@@ -6,7 +6,7 @@ import {
   register,
   update,
   forgotpassword,
-  updatepassword
+  updatepassword,
 } from "../Services/Auth.services";
 
 const AuthContext = createContext();
@@ -16,15 +16,10 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
   const handleLogin = async (email, password, remember) => {
-    try {
-      // Suponiendo que login es una función asíncrona que devuelve una promesa
-      const token = await login(email, password, remember);
+    const token = await login(email, password, remember);
 
-      // Llamar a storeToken después de obtener el token con éxito
+    if (token) {
       storeToken(token);
-    } catch (error) {
-      // Manejar el error de inicio de sesión
-      console.error("Error en el inicio de sesión:", error);
     }
   };
 
@@ -39,7 +34,7 @@ export function AuthProvider({ children }) {
       localStorage.removeItem("authToken");
       console.log("CHAO");
       setIsLoggedIn(false);
-      setUser(null)
+      setUser(null);
       window.location.reload();
     } catch (error) {
       // Manejar el error de cierre de sesión
@@ -62,7 +57,7 @@ export function AuthProvider({ children }) {
         return true;
       }
     } catch (error) {
-      console.error("Error en registro:", error);
+      console.error(error);
     }
   };
 
@@ -72,7 +67,7 @@ export function AuthProvider({ children }) {
       const goUpdate = await update(email, password, fullname, browserToken);
       //el update foto olvidate de hacerlo 1 por 1, en back haz toda la logica y ya esta.
       if (goUpdate) {
-        storeToken(goUpdate.newtoken)
+        storeToken(goUpdate.newtoken);
         return goUpdate;
       }
     } catch (error) {
@@ -80,15 +75,14 @@ export function AuthProvider({ children }) {
     }
   };
   const forgotPassword = async (email) => {
-    const checkUser = await forgotpassword(email)
-  
-    if (checkUser){
-      return true;
-    }
+    const checkUser = await forgotpassword(email);
+    console.log(checkUser);
+    return checkUser;
   };
-  const updatePassword = async (email,password) => {
-    const newPass = await updatepassword(email,password)
-    if (newPass){
+
+  const updatePassword = async (email, password) => {
+    const newPass = await updatepassword(email, password);
+    if (newPass) {
       return true;
     }
   };
@@ -129,7 +123,7 @@ export function AuthProvider({ children }) {
     handleUpdate,
     getToken,
     forgotPassword,
-    updatePassword
+    updatePassword,
   };
 
   return (
