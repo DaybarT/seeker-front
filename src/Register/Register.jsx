@@ -14,13 +14,14 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Modal } from "@mui/material";
 import style from "../Styles/ModalStyle";
-
+import Error from "../Error/Error";
 export default function Register() {
   const { handleRegister } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [errorState, setErrorState] = useState();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -33,10 +34,12 @@ export default function Register() {
       const user = await handleRegister(email, password, fullname, username);
      
       if (user) {
+        setErrorState(null)
         handleOpen();
       }
     } catch (error) {
       console.error(error.message);
+      setErrorState(error.message)
     }
   };
 
@@ -105,6 +108,7 @@ export default function Register() {
           >
             Sign Up
           </Button>
+          {errorState && <Error>{errorState}</Error>}
           <Grid container>
             <Grid item>
               {/* AÑADE EL REGISTRO */}

@@ -51,14 +51,8 @@ export function AuthProvider({ children }) {
   };
 
   const handleRegister = async (email, password, fullname, username) => {
-    try {
-      const goregister = await register(email, password, fullname, username);
-      if (goregister) {
-        return true;
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    const goregister = await register(email, password, fullname, username);
+    return goregister;
   };
 
   const handleUpdate = async (email, password, fullname) => {
