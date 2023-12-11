@@ -45,7 +45,7 @@ const AddShipForm = ({ AddShipsByUser,ChargeShipsByUser }) => {
       fEnvio || document.getElementById("fEnvio")?.value || undefined;
 
     try {
-      const ship = await AddShipsByUser(
+       await AddShipsByUser(
         shipName,
         shipTrack,
         slug,
@@ -54,9 +54,9 @@ const AddShipForm = ({ AddShipsByUser,ChargeShipsByUser }) => {
         shipCpostal,
         shipFenvio
       );
+      
+      setErrorState(null)
       ChargeShipsByUser()
-      setErrorState()
-     
     } catch (error) {
       setErrorState(`Error al agregar el envio: ${error.message}`);
     }
