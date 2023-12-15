@@ -197,7 +197,7 @@ export async function forgotpassword(
     //console.log("Token recibido:", token);
   } catch (error) {
     console.error(error.message);
-    throw error; // Puedes manejar el error o relanzarlo según tus necesidades
+    throw error;
   }
 }
 export async function updatepassword(
@@ -231,8 +231,6 @@ export async function updatepassword(
       return true;
     }
 
-    // Puedes hacer algo con el token, por ejemplo, almacenarlo en el estado o en una cookie
-    //console.log("Token recibido:", token);
   } catch (error) {
     throw error; // Puedes manejar el error o relanzarlo según tus necesidades
   }
